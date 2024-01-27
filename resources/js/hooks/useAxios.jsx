@@ -19,10 +19,10 @@ const useAxios = () => {
         })
 
         const responseInterceptor = axios.interceptors.response.use( response => {
-            // console.log( 'useAxios.jsx :: response', response )
+            console.log( 'useAxios.jsx :: response', response )
             return response
         }, error => {
-            // console.error( 'useAxios.jsx :: error', error )
+            console.error( 'useAxios.jsx :: error', error )
 
             if( error.response.status === 403 && error.response?.data?.forceRedirectUrl ){
                 navigate( error.response.data.forceRedirectUrl )

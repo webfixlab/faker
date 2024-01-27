@@ -40,8 +40,7 @@ const ProductCreator = () => {
             <InlineGrid gap="400" columns={2}>
                 { hasPremium === null 
                     ? <SkeletonDisplayText size="extraLarge" />
-                    : <ManagePremiumButton
-                        hasPremium={ hasPremium }/>
+                    : <ManagePremiumButton hasPremium={ hasPremium } />
                 }
                 <DeleteFakeDataButton />
             </InlineGrid>
@@ -54,7 +53,7 @@ const ProductCreator = () => {
             { hasPremium ? null : (
                 <Tooltip dismissOnMouseOut content="This feature is only available for premium plan.">
                     <Text fontWeight="bold" as="span">
-                        <Icon source={ StarFilledIcon } tone="success"/>
+                        <Icon source={ StarFilledIcon } tone="success" />
                     </Text>
                 </Tooltip>
             )}

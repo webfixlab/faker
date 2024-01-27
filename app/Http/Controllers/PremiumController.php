@@ -29,7 +29,10 @@ class PremiumController extends Controller
         $shop = $request->user();
 
         if( $shop->plan?->price > 0 ){
-            return $this->responseFactory->json();
+            return $this->responseFactory->json([
+                'shop' => $shop,
+                'plan' => $shop->plan
+            ]);
         }
 
         $planId = Plan::query()->where( 'price', '>', 0 )->first()?->id;
@@ -52,8 +55,25 @@ class PremiumController extends Controller
         ] );
     }
 
-    public function destroy( Request $request ){
+    public function destroy( Request $request ) : JsonResponse
+    {
 
-        return $this->responseFactory->noContent();
+        $shop = $request->user();
+
+        if( $shop->plan?->price <= 0 ){
+            return $this->responseFactory->json();
+        }
+
+        $redirectUrl = route(
+            Util::getShopifyConfig('route_names.billing'),
+            [
+                'shop' => $shop->getDomain()->toNative(),
+                'host' => $request->get('host')
+            ]
+        );
+
+        return $this->responseFactory->json( [
+            'redirectUrl' => $redirectUrl
+        ] );
     }
 }
