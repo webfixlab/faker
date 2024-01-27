@@ -13,7 +13,7 @@ const ManagePremiumButton = ( hasPremium ) => {
     const togglePremium = () => {
         setLoading( true )
         
-        const promise = hasPremium === true ? axios.delete( '/premium' ) : axios.post( '/premium' )
+        const promise = hasPremium.hasPremium === true ? axios.delete( '/premium' ) : axios.post( '/premium' )
         
         promise.then( response => {
             console.log( 'mpb : response', response )
@@ -28,8 +28,8 @@ const ManagePremiumButton = ( hasPremium ) => {
         })
     }
     
-    const btnLabel = hasPremium === true ? 'Downgrade to FREE' : 'Upgrade to Premium'
-    console.log( 'managing premium : ', hasPremium, 'btnLabel', btnLabel )
+    const btnLabel = hasPremium.hasPremium === true ? 'Downgrade to FREE' : 'Upgrade to Premium';
+    console.log('managing premium:', hasPremium, 'btnLabel', btnLabel);    
 
     return (
         <>
