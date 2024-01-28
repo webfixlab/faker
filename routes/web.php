@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware( [ 'verify.shopify', CheckAccessScopes::class, Billable::class ] )->group(function(){
     Route::view( '/', 'app' )->name( 'home' );
+    Route::view('/{any}', 'app')->where('any', '.*');
+
     Route::post( '/fake-data', [ FakerController::class, 'store' ] );
     Route::delete( '/fake-data', [ FakerController::class, 'destroy' ] );
 

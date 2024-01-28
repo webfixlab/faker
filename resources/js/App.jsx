@@ -5,6 +5,9 @@ import { useState } from "react";
 import enTranslation from '@shopify/polaris/locales/en.json';
 import MissingApiKey from "./components/MissingApiKey";
 import FakeDataCreator from "./components/FakeDataCreator";
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Support from "./components/Support";
+import Settings from "./components/Settings";
 
 const App = () => {
 
@@ -29,12 +32,28 @@ const App = () => {
     }
 
     return (
-        <AppProvider i18n={ enTranslation }>
-            <Provider config={ appBridgeconfig }>
-                <FakeDataCreator />
-            </Provider>
+        <AppProvider i18n={enTranslation}>
+            <Router>
+                <Routes>
+                    <Route path="/support" element={
+                        <Provider config={appBridgeconfig}>
+                            <Support />
+                        </Provider>
+                    } />
+                    <Route path="/settings" element={
+                        <Provider config={appBridgeconfig}>
+                            <Settings />
+                        </Provider>
+                    } />
+                    <Route path="/" element={
+                        <Provider config={appBridgeconfig}>
+                            <FakeDataCreator />
+                        </Provider>
+                    } />
+                </Routes>
+            </Router>
         </AppProvider>
-    );
-};
+    )
+}
 
 export default App;
