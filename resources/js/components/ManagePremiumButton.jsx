@@ -4,7 +4,7 @@ import { Button, Toast } from "@shopify/polaris"
 import { StarFilledIcon } from "@shopify/polaris-icons"
 import { useNavigate } from "@shopify/app-bridge-react"
 
-const ManagePremiumButton = ( hasPremium ) => {
+const ManagePremiumButton = ( { hasPremium } ) => {
     const [ loading, setLoading ]   = useState( false )
     const [ toastMsg, setToastMsg ] = useState( '' )
     const { axios }                 = useAxios()
@@ -13,7 +13,7 @@ const ManagePremiumButton = ( hasPremium ) => {
     const togglePremium = () => {
         setLoading( true )
         
-        const promise = hasPremium.hasPremium === true ? axios.delete( '/premium' ) : axios.post( '/premium' )
+        const promise = hasPremium === true ? axios.delete( '/premium' ) : axios.post( '/premium' )
         
         promise.then( response => {
             console.log( 'mpb : response', response )
@@ -28,7 +28,7 @@ const ManagePremiumButton = ( hasPremium ) => {
         })
     }
     
-    const btnLabel = hasPremium.hasPremium === true ? 'Downgrade to FREE' : 'Upgrade to Premium';
+    const btnLabel = hasPremium === true ? 'Downgrade to FREE' : 'Upgrade to Premium';
     console.log('managing premium:', hasPremium, 'btnLabel', btnLabel);    
 
     return (

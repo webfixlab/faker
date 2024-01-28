@@ -27,6 +27,7 @@ const ProductCreator = () => {
 
     useEffect(() => {
         axios.get( '/premium' ).then( response => {
+            console.log( 'fdcreate :: response', response.data.hasPremium )
             setHasPremium( response.data.hasPremium )
         })
     }, [])
