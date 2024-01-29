@@ -4,10 +4,10 @@ import { useState } from "react";
 
 import enTranslation from '@shopify/polaris/locales/en.json';
 import MissingApiKey from "./components/MissingApiKey";
-import FakeDataCreator from "./components/FakeDataCreator";
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Support from "./components/Support";
 import Settings from "./components/Settings";
+import Lockify from "./components/Lockify";
 
 const App = () => {
 
@@ -47,7 +47,7 @@ const App = () => {
                     } />
                     <Route path="/" element={
                         <Provider config={appBridgeconfig}>
-                            <FakeDataCreator />
+                            <Lockify />
                         </Provider>
                     } />
                 </Routes>
